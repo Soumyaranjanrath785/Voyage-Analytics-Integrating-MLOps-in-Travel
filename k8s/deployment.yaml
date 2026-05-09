@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlops-deployment
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: mlops-app
+
+  template:
+    metadata:
+      labels:
+        app: mlops-app
+
+    spec:
+      containers:
+        - name: mlops-container
+          image: mlops-app:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
